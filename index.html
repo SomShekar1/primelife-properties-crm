@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeLife Properties CRM</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+            <h2>🏠 PrimeLife</h2>
+
+            <ul>
+                <li><i class="fa fa-chart-line"></i> Dashboard</li>
+                <li><i class="fa fa-users"></i> Clients</li>
+                <li><i class="fa fa-building"></i> Properties</li>
+                <li><i class="fa fa-phone"></i> Follow-ups</li>
+            </ul>
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+
+                <h1>PrimeLife Properties CRM</h1>
+
+            </div>
+
+            <!-- Cards -->
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Total Clients</h3>
+                    <p>25</p>
+                </div>
+
+                <div class="card">
+                    <h3>Total Properties</h3>
+                    <p>40</p>
+                </div>
+
+                <div class="card">
+                    <h3>Pending Follow-ups</h3>
+                    <p>8</p>
+                </div>
+
+            </div>
+
+            <!-- Client Form -->
+            <div class="form-section">
+
+                <h2>Add New Client</h2>
+
+                <form id="clientForm">
+
+                    <input type="text" placeholder="Client Name">
+
+                    <input type="text" placeholder="Phone Number">
+
+                    <input type="text" placeholder="Budget">
+
+                    <input type="text" placeholder="Preferred Location">
+
+                    <select>
+                        <option>Requirement Type</option>
+                        <option>1BHK</option>
+                        <option>2BHK</option>
+                        <option>3BHK</option>
+                        <option>Villa</option>
+                        <option>Plot</option>
+                    </select>
+
+                    <button type="submit">
+                        Add Client
+                    </button>
+
+                </form>
+
+            </div>
+
+            <!-- Table -->
+            <div class="table-section">
+
+                <h2>Recent Clients</h2>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Budget</th>
+                            <th>Location</th>
+                            <th>Requirement</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Rahul</td>
+                            <td>9876543210</td>
+                            <td>80L</td>
+                            <td>Whitefield</td>
+                            <td>2BHK</td>
+                        </tr>
+
+                        <tr>
+                            <td>Akash</td>
+                            <td>9876541230</td>
+                            <td>1.2Cr</td>
+                            <td>Sarjapur</td>
+                            <td>Villa</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
