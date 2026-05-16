@@ -92,6 +92,12 @@ function displayClients(filteredClients = clients) {
                 <td>${client.remarks}</td>
 
                 <td>
+                    <button
+                        onclick="matchProperties(${index})"
+                        class="match-btn"
+                    >
+                        Match
+                    </button>
 
                     <button
                         onclick="editClient(${index})"
@@ -407,5 +413,65 @@ function showProperties() {
 
     document.getElementById("propertySection")
         .style.display = "block";
+
+}
+
+// Match Properties
+function matchProperties(clientIndex) {
+
+    const client = clients[clientIndex];
+
+    // Convert budget text to number
+    const clientBudget =
+        parseInt(client.budget);
+
+    // Find matching properties
+    const matches = properties.filter(function (property) {
+
+        const propertyPrice =
+            parseInt(property.price);
+
+        return (
+
+            property.type === client.requirement &&
+
+            property.location.toLowerCase() ===
+            client.location.toLowerCase() &&
+
+            propertyPrice <= clientBudget &&
+
+            property.status === "Available"
+
+        );
+
+    });
+
+    // No matches
+    if (matches.length === 0) {
+
+        alert("No matching properties found.");
+
+        return;
+
+    }
+
+    // Create match result text
+    let result = "Matching Properties:\n\n";
+
+    matches.forEach(function (property) {
+
+        result +=
+`
+Property ID: ${property.propertyId}
+Type: ${property.type}
+Location: ${property.location}
+Price: ${property.price}
+Owner: ${property.ownerName}
+
+`;
+
+    });
+
+    alert(result);
 
 }
