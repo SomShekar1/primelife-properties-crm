@@ -2,122 +2,352 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>PrimeLife Properties CRM</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
 </head>
 
 <body>
 
     <div class="container">
 
-        <!-- Sidebar -->
+        <!-- SIDEBAR -->
+
         <div class="sidebar">
 
             <h2>🏠 PrimeLife</h2>
 
             <ul>
-                <li><i class="fa fa-chart-line"></i> Dashboard</li>
-                <li><i class="fa fa-users"></i> Clients</li>
-                <li><i class="fa fa-building"></i> Properties</li>
-                <li><i class="fa fa-phone"></i> Follow-ups</li>
+
+                <li>
+                    <i class="fa fa-chart-line"></i>
+                    Dashboard
+                </li>
+
+                <li onclick="showClients()">
+                    <i class="fa fa-users"></i>
+                    Clients
+                </li>
+
+                <li onclick="showProperties()">
+                    <i class="fa fa-building"></i>
+                    Properties
+                </li>
+
+                <li>
+                    <i class="fa fa-phone"></i>
+                    Follow-ups
+                </li>
+
             </ul>
 
         </div>
 
-        <!-- Main Content -->
+
+        <!-- MAIN CONTENT -->
+
         <div class="main-content">
 
-            <!-- Top Bar -->
+            <!-- TOPBAR -->
+
             <div class="topbar">
 
                 <h1>PrimeLife Properties CRM</h1>
 
             </div>
 
-            <!-- Cards -->
+
+            <!-- DASHBOARD CARDS -->
+
             <div class="cards">
 
                 <div class="card">
+
                     <h3>Total Clients</h3>
 
+                    <p>25</p>
+
                 </div>
 
                 <div class="card">
+
                     <h3>Total Properties</h3>
 
+                    <p>40</p>
+
                 </div>
 
                 <div class="card">
+
                     <h3>Pending Follow-ups</h3>
+
+                    <p>8</p>
 
                 </div>
 
             </div>
 
-            <!-- Client Form -->
-            <form id="clientForm">
 
-                <input type="text" id="clientName" placeholder="Client Name" required>
+            <!-- ========================= -->
+            <!-- CLIENT SECTION -->
+            <!-- ========================= -->
 
-                <input type="text" id="clientPhone" placeholder="Phone Number" required>
+            <div id="clientSection">
 
-                <input type="text" id="clientBudget" placeholder="Budget" required>
+                <!-- CLIENT FORM -->
 
-                <input type="text" id="clientLocation" placeholder="Preferred Location" required>
+                <div class="form-section">
 
-                <select id="clientRequirement">
+                    <h2>Add New Client</h2>
 
-                    <option value="">Requirement Type</option>
-                    <option>1BHK</option>
-                    <option>2BHK</option>
-                    <option>3BHK</option>
-                    <option>Villa</option>
-                    <option>Plot</option>
+                    <form id="clientForm">
 
-                </select>
-                <input type="text" id="clientRemarks" placeholder="Remarks / Follow-up" />
+                        <input
+                            type="text"
+                            id="clientName"
+                            placeholder="Client Name"
+                            required
+                        >
 
-                <button type="submit">
-                    Add Client
-                </button>
+                        <input
+                            type="text"
+                            id="clientPhone"
+                            placeholder="Phone Number"
+                            required
+                        >
 
-            </form>
+                        <input
+                            type="text"
+                            id="clientBudget"
+                            placeholder="Budget"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="clientLocation"
+                            placeholder="Preferred Location"
+                            required
+                        >
+
+                        <select id="clientRequirement">
+
+                            <option value="">
+                                Requirement Type
+                            </option>
+
+                            <option>1BHK</option>
+                            <option>2BHK</option>
+                            <option>3BHK</option>
+                            <option>Villa</option>
+                            <option>Plot</option>
+
+                        </select>
+
+                        <input
+                            type="text"
+                            id="clientRemarks"
+                            placeholder="Remarks / Follow-up"
+                        >
+
+                        <button type="submit">
+                            Add Client
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- CLIENT TABLE -->
+
+                <div class="table-section">
+
+                    <h2>Recent Clients</h2>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search clients..."
+                        class="search-box"
+                    >
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Name</th>
+
+                                <th>Phone</th>
+
+                                <th>Budget</th>
+
+                                <th>Location</th>
+
+                                <th>Requirement</th>
+
+                                <th>Remarks</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="clientTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- PROPERTY SECTION -->
+            <!-- ========================= -->
+
+            <div id="propertySection">
+
+                <!-- PROPERTY FORM -->
+
+                <div class="form-section">
+
+                    <h2>Add Property</h2>
+
+                    <form id="propertyForm">
+
+                        <input
+                            type="text"
+                            id="propertyId"
+                            placeholder="Property ID"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="ownerName"
+                            placeholder="Owner Name"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="propertyLocation"
+                            placeholder="Location"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="propertyPrice"
+                            placeholder="Price"
+                            required
+                        >
+
+                        <select id="propertyType">
+
+                            <option value="">
+                                Property Type
+                            </option>
+
+                            <option>1BHK</option>
+                            <option>2BHK</option>
+                            <option>3BHK</option>
+                            <option>Villa</option>
+                            <option>Plot</option>
+
+                        </select>
+
+                        <select id="propertyStatus">
+
+                            <option value="">
+                                Availability
+                            </option>
+
+                            <option>Available</option>
+                            <option>Sold</option>
+                            <option>Pending</option>
+
+                        </select>
+
+                        <input
+                            type="text"
+                            id="propertyRemarks"
+                            placeholder="Property Remarks"
+                        >
+
+                        <button type="submit">
+                            Add Property
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- PROPERTY TABLE -->
+
+                <div class="table-section">
+
+                    <h2>Property Listings</h2>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Owner</th>
+
+                                <th>Location</th>
+
+                                <th>Price</th>
+
+                                <th>Type</th>
+
+                                <th>Status</th>
+
+                                <th>Remarks</th>
+
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="propertyTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
 
         </div>
-
-        <!-- Table -->
-        <div class="table-section">
-
-            <h2>Recent Clients</h2>
-            <input type="text" id="searchInput" placeholder="Search clients..." class="search-box" />
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>Budget</th>
-                        <th>Location</th>
-                        <th>Requirement</th>
-                        <th>Remarks</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="clientTableBody">
-
-                </tbody>
-            </table>
-
-        </div>
-
-    </div>
 
     </div>
 

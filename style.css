@@ -245,3 +245,6 @@ table tr:nth-child(even) {
     background: #1d4ed8;
 
 }
+#propertySection {
+    display: none;
+}

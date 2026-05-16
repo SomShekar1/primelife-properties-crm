@@ -198,3 +198,214 @@ document
         displayClients(filteredClients);
 
     });
+
+
+// ==========================
+// PROPERTY MANAGEMENT
+// ==========================
+
+// Load properties
+let properties =
+    JSON.parse(localStorage.getItem("properties")) || [];
+
+let propertyEditIndex = -1;
+
+// Display existing properties
+displayProperties();
+
+
+// Property Form Submit
+document
+    .getElementById("propertyForm")
+    .addEventListener("submit", function (e) {
+
+        e.preventDefault();
+
+        // Get values
+        const propertyId =
+            document.getElementById("propertyId").value;
+
+        const ownerName =
+            document.getElementById("ownerName").value;
+
+        const location =
+            document.getElementById("propertyLocation").value;
+
+        const price =
+            document.getElementById("propertyPrice").value;
+
+        const type =
+            document.getElementById("propertyType").value;
+
+        const status =
+            document.getElementById("propertyStatus").value;
+
+        const remarks =
+            document.getElementById("propertyRemarks").value;
+
+        // Create object
+        const property = {
+            propertyId,
+            ownerName,
+            location,
+            price,
+            type,
+            status,
+            remarks
+        };
+
+        // Add or update
+        if (propertyEditIndex === -1) {
+
+            properties.push(property);
+
+        } else {
+
+            properties[propertyEditIndex] = property;
+
+            propertyEditIndex = -1;
+
+        }
+
+        // Save
+        saveProperties();
+
+        // Display
+        displayProperties();
+
+        // Reset form
+        document.getElementById("propertyForm").reset();
+
+    });
+
+
+// Display Properties
+function displayProperties() {
+
+    const tableBody =
+        document.getElementById("propertyTableBody");
+
+    tableBody.innerHTML = "";
+
+    properties.forEach(function (property, index) {
+
+        const row = `
+            <tr>
+
+                <td>${property.propertyId}</td>
+
+                <td>${property.ownerName}</td>
+
+                <td>${property.location}</td>
+
+                <td>${property.price}</td>
+
+                <td>${property.type}</td>
+
+                <td>${property.status}</td>
+
+                <td>${property.remarks}</td>
+
+                <td>
+
+                    <button
+                        onclick="editProperty(${index})"
+                        class="edit-btn"
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        onclick="deleteProperty(${index})"
+                        class="delete-btn"
+                    >
+                        Delete
+                    </button>
+
+                </td>
+
+            </tr>
+        `;
+
+        tableBody.innerHTML += row;
+
+    });
+
+}
+
+
+// Delete Property
+function deleteProperty(index) {
+
+    properties.splice(index, 1);
+
+    saveProperties();
+
+    displayProperties();
+
+}
+
+
+// Edit Property
+function editProperty(index) {
+
+    const property = properties[index];
+
+    document.getElementById("propertyId").value =
+        property.propertyId;
+
+    document.getElementById("ownerName").value =
+        property.ownerName;
+
+    document.getElementById("propertyLocation").value =
+        property.location;
+
+    document.getElementById("propertyPrice").value =
+        property.price;
+
+    document.getElementById("propertyType").value =
+        property.type;
+
+    document.getElementById("propertyStatus").value =
+        property.status;
+
+    document.getElementById("propertyRemarks").value =
+        property.remarks;
+
+    propertyEditIndex = index;
+
+}
+
+
+// Save Properties
+function saveProperties() {
+
+    localStorage.setItem(
+        "properties",
+        JSON.stringify(properties)
+    );
+
+}
+
+// Show Client Section
+function showClients() {
+
+    document.getElementById("clientSection")
+        .style.display = "block";
+
+    document.getElementById("propertySection")
+        .style.display = "none";
+
+}
+
+
+// Show Property Section
+function showProperties() {
+
+    document.getElementById("clientSection")
+        .style.display = "none";
+
+    document.getElementById("propertySection")
+        .style.display = "block";
+
+}
