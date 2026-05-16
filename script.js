@@ -1,6 +1,7 @@
 // Load clients from localStorage
 let clients =
     JSON.parse(localStorage.getItem("clients")) || [];
+    let editIndex = -1;
 
 
 // Display existing clients
@@ -43,8 +44,21 @@ document
             remarks
         };
 
-        // Add client
-        clients.push(client);
+        /// Check edit mode
+        if (editIndex === -1) {
+
+            // Add new client
+            clients.push(client);
+
+        } else {
+
+            // Update existing client
+            clients[editIndex] = client;
+
+            // Reset edit mode
+            editIndex = -1;
+
+        }
 
         // Save
         saveClients();
@@ -78,12 +92,21 @@ function displayClients(filteredClients = clients) {
                 <td>${client.remarks}</td>
 
                 <td>
+
+                    <button
+                        onclick="editClient(${index})"
+                        class="edit-btn"
+                    >
+                        Edit
+                    </button>
+
                     <button
                         onclick="deleteClient(${index})"
                         class="delete-btn"
                     >
                         Delete
                     </button>
+
                 </td>
             </tr>
         `;
@@ -109,6 +132,34 @@ function deleteClient(index) {
 
 }
 
+// Edit Client
+function editClient(index) {
+
+    const client = clients[index];
+
+    // Fill form
+    document.getElementById("clientName").value =
+        client.name;
+
+    document.getElementById("clientPhone").value =
+        client.phone;
+
+    document.getElementById("clientBudget").value =
+        client.budget;
+
+    document.getElementById("clientLocation").value =
+        client.location;
+
+    document.getElementById("clientRequirement").value =
+        client.requirement;
+
+    document.getElementById("clientRemarks").value =
+        client.remarks;
+
+    // Store edit index
+    editIndex = index;
+
+}
 
 // Save Clients
 function saveClients() {
