@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- Icons -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
@@ -62,79 +61,60 @@
             </div>
 
             <!-- Client Form -->
-            <div class="form-section">
+            <form id="clientForm">
 
-                <h2>Add New Client</h2>
+                <input type="text" id="clientName" placeholder="Client Name" required>
 
-                <form id="clientForm">
+                <input type="text" id="clientPhone" placeholder="Phone Number" required>
 
-                    <input type="text" placeholder="Client Name">
+                <input type="text" id="clientBudget" placeholder="Budget" required>
 
-                    <input type="text" placeholder="Phone Number">
+                <input type="text" id="clientLocation" placeholder="Preferred Location" required>
 
-                    <input type="text" placeholder="Budget">
+                <select id="clientRequirement">
 
-                    <input type="text" placeholder="Preferred Location">
+                    <option value="">Requirement Type</option>
+                    <option>1BHK</option>
+                    <option>2BHK</option>
+                    <option>3BHK</option>
+                    <option>Villa</option>
+                    <option>Plot</option>
 
-                    <select>
-                        <option>Requirement Type</option>
-                        <option>1BHK</option>
-                        <option>2BHK</option>
-                        <option>3BHK</option>
-                        <option>Villa</option>
-                        <option>Plot</option>
-                    </select>
+                </select>
 
-                    <button type="submit">
-                        Add Client
-                    </button>
+                <button type="submit">
+                    Add Client
+                </button>
 
-                </form>
-
-            </div>
-
-            <!-- Table -->
-            <div class="table-section">
-
-                <h2>Recent Clients</h2>
-
-                <table>
-
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Phone</th>
-                            <th>Budget</th>
-                            <th>Location</th>
-                            <th>Requirement</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>Rahul</td>
-                            <td>9876543210</td>
-                            <td>80L</td>
-                            <td>Whitefield</td>
-                            <td>2BHK</td>
-                        </tr>
-
-                        <tr>
-                            <td>Akash</td>
-                            <td>9876541230</td>
-                            <td>1.2Cr</td>
-                            <td>Sarjapur</td>
-                            <td>Villa</td>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
+            </form>
 
         </div>
+
+        <!-- Table -->
+        <div class="table-section">
+
+            <h2>Recent Clients</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Budget</th>
+                        <th>Location</th>
+                        <th>Requirement</th>
+                    </tr>
+                </thead>
+
+                <tbody id="clientTableBody">
+
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
 
     </div>
 
