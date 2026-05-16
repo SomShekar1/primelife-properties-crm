@@ -1,5 +1,11 @@
-// Client Array
-let clients = [];
+// Load clients from localStorage
+let clients =
+    JSON.parse(localStorage.getItem("clients")) || [];
+
+
+// Display existing clients
+displayClients();
+
 
 // Form Submit
 document
@@ -8,31 +14,42 @@ document
 
         e.preventDefault();
 
-        // Get input values
-        const name = document.getElementById("clientName").value;
+        // Get values
+        const name =
+            document.getElementById("clientName").value;
 
-        const phone = document.getElementById("clientPhone").value;
+        const phone =
+            document.getElementById("clientPhone").value;
 
-        const budget = document.getElementById("clientBudget").value;
+        const budget =
+            document.getElementById("clientBudget").value;
 
-        const location = document.getElementById("clientLocation").value;
+        const location =
+            document.getElementById("clientLocation").value;
 
         const requirement =
             document.getElementById("clientRequirement").value;
 
-        // Create client object
+        const remarks =
+            document.getElementById("clientRemarks").value;
+
+        // Create object
         const client = {
             name,
             phone,
             budget,
             location,
-            requirement
+            requirement,
+            remarks
         };
 
-        // Push into array
+        // Add client
         clients.push(client);
 
-        // Update table
+        // Save
+        saveClients();
+
+        // Display
         displayClients();
 
         // Reset form
@@ -47,11 +64,9 @@ function displayClients() {
     const tableBody =
         document.getElementById("clientTableBody");
 
-    // Clear old rows
     tableBody.innerHTML = "";
 
-    // Loop through clients
-    clients.forEach(function (client) {
+    clients.forEach(function (client, index) {
 
         const row = `
             <tr>
@@ -60,11 +75,47 @@ function displayClients() {
                 <td>${client.budget}</td>
                 <td>${client.location}</td>
                 <td>${client.requirement}</td>
+                <td>${client.remarks}</td>
+
+                <td>
+                    <button
+                        onclick="deleteClient(${index})"
+                        class="delete-btn"
+                    >
+                        Delete
+                    </button>
+                </td>
             </tr>
         `;
 
         tableBody.innerHTML += row;
 
     });
+
+}
+
+
+// Delete Client
+function deleteClient(index) {
+
+    // Remove from array
+    clients.splice(index, 1);
+
+    // Save updated array
+    saveClients();
+
+    // Refresh table
+    displayClients();
+
+}
+
+
+// Save Clients
+function saveClients() {
+
+    localStorage.setItem(
+        "clients",
+        JSON.stringify(clients)
+    );
 
 }

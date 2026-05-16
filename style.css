@@ -181,3 +181,26 @@ table th {
 table tr:nth-child(even) {
     background: #f1f5f9;
 }
+
+.delete-btn {
+
+    background: #dc2626;
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.delete-btn:hover {
+
+    background: #b91c1c;
+
+}
