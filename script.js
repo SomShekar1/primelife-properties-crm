@@ -59,14 +59,14 @@ document
 
 
 // Display Clients
-function displayClients() {
+function displayClients(filteredClients = clients) {
 
     const tableBody =
         document.getElementById("clientTableBody");
 
     tableBody.innerHTML = "";
 
-    clients.forEach(function (client, index) {
+    filteredClients.forEach(function (client, index) {
 
         const row = `
             <tr>
@@ -119,3 +119,31 @@ function saveClients() {
     );
 
 }
+
+// Search Clients
+document
+    .getElementById("searchInput")
+    .addEventListener("keyup", function () {
+
+        const searchValue =
+            this.value.toLowerCase();
+
+        const filteredClients = clients.filter(function (client) {
+
+            return (
+
+                client.name.toLowerCase().includes(searchValue) ||
+
+                client.location.toLowerCase().includes(searchValue) ||
+
+                client.requirement.toLowerCase().includes(searchValue) ||
+
+                client.remarks.toLowerCase().includes(searchValue)
+
+            );
+
+        });
+
+        displayClients(filteredClients);
+
+    });
