@@ -608,17 +608,12 @@ function showProperties() {
 function exportClientsCSV() {
 
     let csv =
-`Name,Phone,Budget,Location,Requirement,Remarks\n`;
+        "Name,Phone,Budget,Location,Requirement,Remarks\n";
 
     clients.forEach(function (client) {
 
         csv +=
-`${client.name},
-${client.phone},
-${client.budget},
-${client.location},
-${client.requirement},
-${client.remarks}\n`;
+            `${client.name},${client.phone},${client.budget},${client.location},${client.requirement},${client.remarks}\n`;
 
     });
 
@@ -634,18 +629,12 @@ ${client.remarks}\n`;
 function exportPropertiesCSV() {
 
     let csv =
-`Property ID,Owner,Location,Price,Type,Status,Remarks\n`;
+        "Property ID,Owner,Location,Price,Type,Status,Remarks\n";
 
     properties.forEach(function (property) {
 
         csv +=
-`${property.propertyId},
-${property.ownerName},
-${property.location},
-${property.price},
-${property.type},
-${property.status},
-${property.remarks}\n`;
+            `${property.propertyId},${property.ownerName},${property.location},${property.price},${property.type},${property.status},${property.remarks}\n`;
 
     });
 
