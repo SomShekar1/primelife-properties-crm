@@ -1,14 +1,39 @@
+// ==========================
+// CLIENT MANAGEMENT
+// ==========================
+
 // Load clients from localStorage
 let clients =
     JSON.parse(localStorage.getItem("clients")) || [];
-    let editIndex = -1;
+
+// Edit tracking
+let editIndex = -1;
 
 
-// Display existing clients
+// ==========================
+// PROPERTY MANAGEMENT
+// ==========================
+
+// Load properties
+let properties =
+    JSON.parse(localStorage.getItem("properties")) || [];
+
+let propertyEditIndex = -1;
+
+
+// ==========================
+// INITIAL LOAD
+// ==========================
+
 displayClients();
+displayProperties();
+updateDashboard();
 
 
-// Form Submit
+// ==========================
+// CLIENT FORM SUBMIT
+// ==========================
+
 document
     .getElementById("clientForm")
     .addEventListener("submit", function (e) {
@@ -44,18 +69,15 @@ document
             remarks
         };
 
-        /// Check edit mode
+        // Add or update
         if (editIndex === -1) {
 
-            // Add new client
             clients.push(client);
 
         } else {
 
-            // Update existing client
             clients[editIndex] = client;
 
-            // Reset edit mode
             editIndex = -1;
 
         }
@@ -66,13 +88,19 @@ document
         // Display
         displayClients();
 
+        // Update dashboard
+        updateDashboard();
+
         // Reset form
         document.getElementById("clientForm").reset();
 
     });
 
 
-// Display Clients
+// ==========================
+// DISPLAY CLIENTS
+// ==========================
+
 function displayClients(filteredClients = clients) {
 
     const tableBody =
@@ -82,16 +110,50 @@ function displayClients(filteredClients = clients) {
 
     filteredClients.forEach(function (client, index) {
 
+        // Row color logic
+        let rowClass = "";
+
+        const remarks =
+            client.remarks.toLowerCase();
+
+        if (remarks.includes("not interested")) {
+
+            rowClass = "not-interested-row";
+
+        }
+        else if (remarks.includes("interested")) {
+
+            rowClass = "interested-row";
+
+        }
+        else if (remarks.includes("follow")) {
+
+            rowClass = "followup-row";
+
+        }
+        else if (remarks.includes("site")) {
+
+            rowClass = "sitevisit-row";
+
+        }
+
         const row = `
-            <tr>
+            <tr class="${rowClass}">
+
                 <td>${client.name}</td>
+
                 <td>${client.phone}</td>
+
                 <td>${client.budget}</td>
+
                 <td>${client.location}</td>
+
                 <td>${client.requirement}</td>
+
                 <td>${client.remarks}</td>
 
                 <td>
+
                     <button
                         onclick="matchProperties(${index})"
                         class="match-btn"
@@ -114,6 +176,7 @@ function displayClients(filteredClients = clients) {
                     </button>
 
                 </td>
+
             </tr>
         `;
 
@@ -124,26 +187,31 @@ function displayClients(filteredClients = clients) {
 }
 
 
-// Delete Client
+// ==========================
+// DELETE CLIENT
+// ==========================
+
 function deleteClient(index) {
 
-    // Remove from array
     clients.splice(index, 1);
 
-    // Save updated array
     saveClients();
 
-    // Refresh table
     displayClients();
+
+    updateDashboard();
 
 }
 
-// Edit Client
+
+// ==========================
+// EDIT CLIENT
+// ==========================
+
 function editClient(index) {
 
     const client = clients[index];
 
-    // Fill form
     document.getElementById("clientName").value =
         client.name;
 
@@ -162,12 +230,15 @@ function editClient(index) {
     document.getElementById("clientRemarks").value =
         client.remarks;
 
-    // Store edit index
     editIndex = index;
 
 }
 
-// Save Clients
+
+// ==========================
+// SAVE CLIENTS
+// ==========================
+
 function saveClients() {
 
     localStorage.setItem(
@@ -177,7 +248,11 @@ function saveClients() {
 
 }
 
-// Search Clients
+
+// ==========================
+// SEARCH CLIENTS
+// ==========================
+
 document
     .getElementById("searchInput")
     .addEventListener("keyup", function () {
@@ -207,20 +282,9 @@ document
 
 
 // ==========================
-// PROPERTY MANAGEMENT
+// PROPERTY FORM SUBMIT
 // ==========================
 
-// Load properties
-let properties =
-    JSON.parse(localStorage.getItem("properties")) || [];
-
-let propertyEditIndex = -1;
-
-// Display existing properties
-displayProperties();
-
-
-// Property Form Submit
 document
     .getElementById("propertyForm")
     .addEventListener("submit", function (e) {
@@ -279,13 +343,19 @@ document
         // Display
         displayProperties();
 
+        // Update dashboard
+        updateDashboard();
+
         // Reset form
         document.getElementById("propertyForm").reset();
 
     });
 
 
-// Display Properties
+// ==========================
+// DISPLAY PROPERTIES
+// ==========================
+
 function displayProperties() {
 
     const tableBody =
@@ -340,7 +410,10 @@ function displayProperties() {
 }
 
 
-// Delete Property
+// ==========================
+// DELETE PROPERTY
+// ==========================
+
 function deleteProperty(index) {
 
     properties.splice(index, 1);
@@ -349,10 +422,15 @@ function deleteProperty(index) {
 
     displayProperties();
 
+    updateDashboard();
+
 }
 
 
-// Edit Property
+// ==========================
+// EDIT PROPERTY
+// ==========================
+
 function editProperty(index) {
 
     const property = properties[index];
@@ -383,7 +461,10 @@ function editProperty(index) {
 }
 
 
-// Save Properties
+// ==========================
+// SAVE PROPERTIES
+// ==========================
+
 function saveProperties() {
 
     localStorage.setItem(
@@ -392,6 +473,110 @@ function saveProperties() {
     );
 
 }
+
+
+// ==========================
+// MATCH PROPERTIES
+// ==========================
+
+function matchProperties(clientIndex) {
+
+    const client = clients[clientIndex];
+
+    const clientBudget =
+        parseInt(client.budget);
+
+    const matches = properties.filter(function (property) {
+
+        const propertyPrice =
+            parseInt(property.price);
+
+        return (
+
+            property.type === client.requirement &&
+
+            property.location.toLowerCase() ===
+            client.location.toLowerCase() &&
+
+            propertyPrice <= clientBudget &&
+
+            property.status === "Available"
+
+        );
+
+    });
+
+    if (matches.length === 0) {
+
+        alert("No matching properties found.");
+
+        return;
+
+    }
+
+    let result = "Matching Properties:\n\n";
+
+    matches.forEach(function (property) {
+
+        result +=
+`
+Property ID: ${property.propertyId}
+Type: ${property.type}
+Location: ${property.location}
+Price: ${property.price}
+Owner: ${property.ownerName}
+
+`;
+
+    });
+
+    alert(result);
+
+}
+
+
+// ==========================
+// DASHBOARD ANALYTICS
+// ==========================
+
+function updateDashboard() {
+
+    // Total Clients
+    document.getElementById("totalClients")
+        .textContent = clients.length;
+
+    // Total Properties
+    document.getElementById("totalProperties")
+        .textContent = properties.length;
+
+    // Interested Clients
+    const interestedClients = clients.filter(function (client) {
+
+        return client.remarks
+            .toLowerCase()
+            .includes("interested");
+
+    });
+
+    document.getElementById("interestedClients")
+        .textContent = interestedClients.length;
+
+    // Available Properties
+    const availableProperties = properties.filter(function (property) {
+
+        return property.status === "Available";
+
+    });
+
+    document.getElementById("availableProperties")
+        .textContent = availableProperties.length;
+
+}
+
+
+// ==========================
+// DASHBOARD NAVIGATION
+// ==========================
 
 // Show Client Section
 function showClients() {
@@ -413,65 +598,5 @@ function showProperties() {
 
     document.getElementById("propertySection")
         .style.display = "block";
-
-}
-
-// Match Properties
-function matchProperties(clientIndex) {
-
-    const client = clients[clientIndex];
-
-    // Convert budget text to number
-    const clientBudget =
-        parseInt(client.budget);
-
-    // Find matching properties
-    const matches = properties.filter(function (property) {
-
-        const propertyPrice =
-            parseInt(property.price);
-
-        return (
-
-            property.type === client.requirement &&
-
-            property.location.toLowerCase() ===
-            client.location.toLowerCase() &&
-
-            propertyPrice <= clientBudget &&
-
-            property.status === "Available"
-
-        );
-
-    });
-
-    // No matches
-    if (matches.length === 0) {
-
-        alert("No matching properties found.");
-
-        return;
-
-    }
-
-    // Create match result text
-    let result = "Matching Properties:\n\n";
-
-    matches.forEach(function (property) {
-
-        result +=
-`
-Property ID: ${property.propertyId}
-Type: ${property.type}
-Location: ${property.location}
-Price: ${property.price}
-Owner: ${property.ownerName}
-
-`;
-
-    });
-
-    alert(result);
 
 }

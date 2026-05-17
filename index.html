@@ -5,20 +5,14 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PrimeLife Properties CRM</title>
 
     <link rel="stylesheet" href="style.css">
 
     <!-- Font Awesome Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -74,13 +68,15 @@
 
             <!-- DASHBOARD CARDS -->
 
+            <!-- DASHBOARD CARDS -->
+
             <div class="cards">
 
                 <div class="card">
 
                     <h3>Total Clients</h3>
 
-                    <p>25</p>
+                    <p id="totalClients">0</p>
 
                 </div>
 
@@ -88,15 +84,23 @@
 
                     <h3>Total Properties</h3>
 
-                    <p>40</p>
+                    <p id="totalProperties">0</p>
 
                 </div>
 
                 <div class="card">
 
-                    <h3>Pending Follow-ups</h3>
+                    <h3>Interested Clients</h3>
 
-                    <p>8</p>
+                    <p id="interestedClients">0</p>
+
+                </div>
+
+                <div class="card">
+
+                    <h3>Available Properties</h3>
+
+                    <p id="availableProperties">0</p>
 
                 </div>
 
@@ -117,33 +121,13 @@
 
                     <form id="clientForm">
 
-                        <input
-                            type="text"
-                            id="clientName"
-                            placeholder="Client Name"
-                            required
-                        >
+                        <input type="text" id="clientName" placeholder="Client Name" required>
 
-                        <input
-                            type="text"
-                            id="clientPhone"
-                            placeholder="Phone Number"
-                            required
-                        >
+                        <input type="text" id="clientPhone" placeholder="Phone Number" required>
 
-                        <input
-                            type="text"
-                            id="clientBudget"
-                            placeholder="Budget"
-                            required
-                        >
+                        <input type="text" id="clientBudget" placeholder="Budget" required>
 
-                        <input
-                            type="text"
-                            id="clientLocation"
-                            placeholder="Preferred Location"
-                            required
-                        >
+                        <input type="text" id="clientLocation" placeholder="Preferred Location" required>
 
                         <select id="clientRequirement">
 
@@ -159,11 +143,7 @@
 
                         </select>
 
-                        <input
-                            type="text"
-                            id="clientRemarks"
-                            placeholder="Remarks / Follow-up"
-                        >
+                        <input type="text" id="clientRemarks" placeholder="Remarks / Follow-up">
 
                         <button type="submit">
                             Add Client
@@ -180,12 +160,7 @@
 
                     <h2>Recent Clients</h2>
 
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search clients..."
-                        class="search-box"
-                    >
+                    <input type="text" id="searchInput" placeholder="Search clients..." class="search-box">
 
                     <table>
 
@@ -236,33 +211,13 @@
 
                     <form id="propertyForm">
 
-                        <input
-                            type="text"
-                            id="propertyId"
-                            placeholder="Property ID"
-                            required
-                        >
+                        <input type="text" id="propertyId" placeholder="Property ID" required>
 
-                        <input
-                            type="text"
-                            id="ownerName"
-                            placeholder="Owner Name"
-                            required
-                        >
+                        <input type="text" id="ownerName" placeholder="Owner Name" required>
 
-                        <input
-                            type="text"
-                            id="propertyLocation"
-                            placeholder="Location"
-                            required
-                        >
+                        <input type="text" id="propertyLocation" placeholder="Location" required>
 
-                        <input
-                            type="text"
-                            id="propertyPrice"
-                            placeholder="Price"
-                            required
-                        >
+                        <input type="text" id="propertyPrice" placeholder="Price" required>
 
                         <select id="propertyType">
 
@@ -290,11 +245,7 @@
 
                         </select>
 
-                        <input
-                            type="text"
-                            id="propertyRemarks"
-                            placeholder="Property Remarks"
-                        >
+                        <input type="text" id="propertyRemarks" placeholder="Property Remarks">
 
                         <button type="submit">
                             Add Property

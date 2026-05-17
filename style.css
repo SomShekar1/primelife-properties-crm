@@ -273,3 +273,163 @@ table tr:nth-child(even) {
     background: #15803d;
 
 }
+
+
+/* =========================
+MATCH BUTTON
+========================= */
+
+.match-btn {
+
+    background: #16a34a;
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+    transition: 0.3s;
+
+}
+
+.match-btn:hover {
+
+    background: #15803d;
+
+}
+
+
+/* =========================
+EDIT BUTTON
+========================= */
+
+.edit-btn {
+
+    background: #2563eb;
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+    transition: 0.3s;
+
+}
+
+.edit-btn:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+/* =========================
+DELETE BUTTON
+========================= */
+
+.delete-btn {
+
+    background: #dc2626;
+    color: white;
+
+    border: none;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.delete-btn:hover {
+
+    background: #b91c1c;
+
+}
+
+
+/* =========================
+SEARCH BOX
+========================= */
+
+.search-box {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================
+PROPERTY SECTION
+========================= */
+
+#propertySection {
+
+    display: none;
+
+}
+
+
+/* =========================
+STATUS COLORS
+========================= */
+
+/* Interested */
+
+.interested-row {
+
+    background: #dcfce7 !important;
+
+}
+
+
+/* Not Interested */
+
+.not-interested-row {
+
+    background: #fee2e2 !important;
+
+}
+
+
+/* Follow-up */
+
+.followup-row {
+
+    background: #fef9c3 !important;
+
+}
+
+
+/* Site Visit */
+
+.sitevisit-row {
+
+    background: #dbeafe !important;
+
+}
