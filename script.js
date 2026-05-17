@@ -600,3 +600,81 @@ function showProperties() {
         .style.display = "block";
 
 }
+
+// ==========================
+// EXPORT CLIENTS CSV
+// ==========================
+
+function exportClientsCSV() {
+
+    let csv =
+`Name,Phone,Budget,Location,Requirement,Remarks\n`;
+
+    clients.forEach(function (client) {
+
+        csv +=
+`${client.name},
+${client.phone},
+${client.budget},
+${client.location},
+${client.requirement},
+${client.remarks}\n`;
+
+    });
+
+    downloadCSV(csv, "clients.csv");
+
+}
+
+
+// ==========================
+// EXPORT PROPERTIES CSV
+// ==========================
+
+function exportPropertiesCSV() {
+
+    let csv =
+`Property ID,Owner,Location,Price,Type,Status,Remarks\n`;
+
+    properties.forEach(function (property) {
+
+        csv +=
+`${property.propertyId},
+${property.ownerName},
+${property.location},
+${property.price},
+${property.type},
+${property.status},
+${property.remarks}\n`;
+
+    });
+
+    downloadCSV(csv, "properties.csv");
+
+}
+
+
+// ==========================
+// DOWNLOAD CSV
+// ==========================
+
+function downloadCSV(csv, filename) {
+
+    const blob =
+        new Blob([csv], { type: "text/csv" });
+
+    const url =
+        window.URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download = filename;
+
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+
+}

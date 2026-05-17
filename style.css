@@ -433,3 +433,32 @@ STATUS COLORS
     background: #dbeafe !important;
 
 }
+
+/* =========================
+EXPORT BUTTON
+========================= */
+
+.export-btn {
+
+    background: #0f766e;
+    color: white;
+
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+.export-btn:hover {
+
+    background: #115e59;
+
+}
